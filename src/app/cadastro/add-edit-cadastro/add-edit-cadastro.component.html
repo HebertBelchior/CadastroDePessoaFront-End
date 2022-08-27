@@ -1,0 +1,45 @@
+<form>
+    <div class="mb-3">
+        <label for="status" class="form-label">Status</label>
+        <select name="status" id="status" class="form-control" [(ngModel)]="status">
+            <option *ngFor="let status of statusList$|async" [value]="status.statusOpcao">{{status.statusOpcao}}</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" [(ngModel)]="nome" name="nome">
+    </div>
+    <div class="mb-3">
+        <label for="sexo" class="form-label">Sexo</label>
+        <input type="text" class="form-control" [(ngModel)]="sexo" name="sexo">
+    </div>
+    <div class="mb-3">
+        <label for="dataDeNascimento" class="form-label">Data De Nascimento</label>
+        <input type="text" class="form-control" [(ngModel)]="dataDeNascimento" name="dataDeNascimento">
+    </div>
+    <div class="mb-3">
+        <label for="telefone" class="form-label">Telefone</label>
+        <input type="text" class="form-control" [(ngModel)]="telefone" name="telefone">
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" [(ngModel)]="email" name="email">
+    </div>
+    <div class="mb-3">
+        <label for="cadastroTipoId" class="form-label">Tipo de Cadastro</label>
+        <input type="text" class="form-control" name="cadastroTipoId" [(ngModel)]="cadastroTipoId"
+        *ngIf="cadastro.id!=0" disabled>
+        <select name="cadastroTipoId" id="cadastroTipoId" class="form-control" 
+            [(ngModel)]="cadastroTipoId" *ngIf="cadastro.id==0">
+            <option *ngFor="let tipo of casdastroTipoList$|async"
+                [value]="tipo.id">{{tipo.cadastroNome}}
+            </option>
+        </select>
+    </div>
+    <button (click)="addCadastro()" *ngIf="cadastro.id==0" class="btn btn-primary">
+        Add
+    </button>
+    <button (click)="updateCadastro()" *ngIf="cadastro.id!=0" class="btn btn-primary">
+        Update
+    </button> 
+</form>
